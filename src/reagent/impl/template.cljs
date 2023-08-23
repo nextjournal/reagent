@@ -1,5 +1,5 @@
 (ns reagent.impl.template
-  (:require [react :as react]
+  (:require ["react" :as react]
             [clojure.string :as string]
             [reagent.impl.util :as util :refer [named?]]
             [reagent.impl.component :as comp]

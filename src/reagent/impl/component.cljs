@@ -1,6 +1,6 @@
 (ns reagent.impl.component
   (:require [goog.object :as gobj]
-            [react :as react]
+            ["react" :as react]
             [reagent.impl.util :as util]
             [reagent.impl.batching :as batch]
             [reagent.impl.protocols :as p]
@@ -44,11 +44,11 @@
            (react/Children.toArray)
            (into [])))))
 
-(defn ^boolean reagent-class? [c]
+(defn ^boolean reagent-class? [^js c]
   (and (fn? c)
        (some? (some-> c (.-prototype) (.-reagentRender)))))
 
-(defn ^boolean react-class? [c]
+(defn ^boolean react-class? [^js c]
   (and (fn? c)
        (some? (some-> c (.-prototype) (.-render)))))
 
@@ -153,7 +153,7 @@
     :shouldComponentUpdate
     (fn shouldComponentUpdate [nextprops nextstate]
       (or util/*always-update*
-          (this-as c
+          (this-as ^js c
                    ;; Don't care about nextstate here, we use forceUpdate
                    ;; when only when state has changed anyway.
                    (let [old-argv (.. c -props -argv)

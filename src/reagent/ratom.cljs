@@ -322,7 +322,7 @@
 
 ;;; with-let support
 
-(defn with-let-destroy [v]
+(defn with-let-destroy [^js v]
   (when-some [f (.-destroy v)]
     (f)))
 
